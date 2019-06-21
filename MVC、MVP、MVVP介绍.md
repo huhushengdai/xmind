@@ -14,7 +14,7 @@
 
 ​		controller：响应view事件，去选择对应的model去处理相应的业务逻辑。本身不负责处理任何业务逻辑。
 
-![mvc结构图](E:\work\xmind\img\mvc\mvc.png)
+![mvc结构图](https://raw.githubusercontent.com/huhushengdai/xmind/master/img/mvc/mvc.png)
 
 ​		举个栗子：
 
@@ -30,7 +30,7 @@
 
 ​		开发：项目被分离成三个模块view、model、controller（emm，一个类里写90行代码，比起三个类里各写				    30行代码要辛苦多了），每个模块只需要处理本身的逻辑，意味着开发某一个模块时，思考的事情简					单了（只有整个项目的三分之一），并且，模块可以被多次使用、多次使用、多次使用（划重点）！
 
-​					想想看一个场景，有十个界面都需要登录，那你是选择复制10次代码，还是选择每个界面都调用					登录model？要是要求坑爹，10个登录界面还长得不一样呢？（现实可能不会这么坑爹，因为会可能					更坑爹！不妨各自想下自己项目）
+​					想想看一个场景，有十个界面都需要登录，那你是选择复制10次代码，还是选择每个界面都调用					登录model？要是要求坑爹，10个登录界面还长得不一样呢？
 
 ​		扩展：某一天，后台跟你说登录接口需要多一个参数，而此时的项目中有10个登录界面，并且这10个界面里				    面都是copy了一份登录代码！那画面简直太美，不敢相信。但是，如果项目里，这10个界面都是引用               				    同一个登录model呢？怕是后台刚说完话，你就可以跟他说：我已经改好了，什么时候一起测一下？
 
@@ -44,11 +44,11 @@
 
 ​		其实探讨这个问题的主要原因是，很多人在以MVC模式写项目时候，都是在controller里面写业务逻辑（网络请求等），然后在model里写数据存储。这里可以有个思考：这样写也没问题啊，view、业务逻辑、db操作，也是层次清晰，目标明确，并且粒度适中，避免model里面内聚太多代码。带着思考，我们可以看图来推导一下，两者的区别。
 
-![mvc结构图](E:\work\xmind\img\mvc\图1.png)
+![图1](https://raw.githubusercontent.com/huhushengdai/xmind/master/img/mvc/图1.png)
 
 ​																						图1
 
-![mvc结构图](E:\work\xmind\img\mvc\图2.png)
+![图2](https://raw.githubusercontent.com/huhushengdai/xmind/master/img/mvc/图2.png)
 
 ​																						图2
 
@@ -62,13 +62,13 @@
 
 ​		处理办法3：组合——在开发中是否经常有听到前辈的谆谆教诲：多用组合，少用继承。当然，不是说不用继							 承，而是要注意场景，这里就不对使用继承的场景进行扩展，回到我们的controller中。
 
-![mvc结构图](E:\work\xmind\img\mvc\图3.png)
+![图3](https://raw.githubusercontent.com/huhushengdai/xmind/master/img/mvc/图3.png)
 
 ​																						图3
 
 ​		这把http模块跟db模块划拉到一起，是不是就成了model？然后看看controller，是不是没有业务逻辑了？只负责控制，调用哪个model，去进行业务处理。这样想想，中间层叫做controller而不是service之类的，还是有道理的——我controller只是负责控制别人去干活，至于怎么干，那不是我的职责。
 
-![mvc结构图](E:\work\xmind\img\mvc\图4.png)
+![图4](https://raw.githubusercontent.com/huhushengdai/xmind/master/img/mvc/图4.png)
 
 ​		关于MVC的介绍与探讨，到这基本结束了，我们再来重新总结一下MVC：一种设计模式，把项目代码分离成三个部分view、controller、model。其中view显示数据，响应用户操作事件；controller控制中心，负责调度model去执行业务；model实际去执行业务逻辑的模块，获得数据后，通知view去更新显示。
 
@@ -76,7 +76,7 @@
 
 ​		MVP（Model-View-Presenter）实际是是MVC的衍生，也可以说是升级、改进。我们先来看看MVP的结构图，再去与MVC比较，看看是在哪里进行了改进，同时为什么要这样改进，有什么好处。
 
-![mvp结构图](E:\work\xmind\img\mvc\mvp.png)
+![mvp结构图](https://raw.githubusercontent.com/huhushengdai/xmind/master/img/mvc/mvp.png)
 
 ​		从图中我们可以看出，P（presenter）代替了controller，成为了控制中心，同时model也不再是获取到数据后直接通知view，而是把数据通知给presenter，再由Presenter去通知view。简单的说，就是进一步的解耦了，view跟model没有了直接关联。这里的意图很明确了，但是我们依旧不妨举个例子来分析。
 
@@ -96,7 +96,7 @@
 
 ​		MVVM（Model-View-ViewModel），这个模式很好理解，也很不好理解。好理解在于，MVVM跟MVP的基本思想是一样的，用ViewModel代替了Presenter而已；而不好理解在于，View跟ViewModel是双向绑定，而不是像View跟Presenter一样属于调用和回调的关系。
 
-![mvvm结构图](E:\work\xmind\img\mvc\mvvm.png)
+![mvvm结构图](https://raw.githubusercontent.com/huhushengdai/xmind/master/img/mvc/mvvm.png)
 
 ​		划重点：想理解MVVM跟MVP的区别，关键在于“双向绑定”。
 
